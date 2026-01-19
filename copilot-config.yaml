@@ -1,9 +1,47 @@
+litellm_settings:
+  drop_params: true  # 核心：自动丢弃 GitHub 不支持的 thinking 等参数
+  set_verbose: false # 设置为 true 可以看到更详细的映射日志
+
 model_list:
-  - model_name: gpt-4
+  # --- 1. Claude 3.5 Sonnet (Claude Code 默认首选) ---
+  - model_name: claude-3-5-sonnet-20241022
     litellm_params:
-      model: github_copilot/gpt-4
-      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+      model: github_copilot/claude-sonnet-4.5 # 映射到你列表里最新的 Sonnet
+      extra_headers: &copilot_headers
+        Editor-Version: "vscode/1.85.1"
+        Copilot-Integration-Id: "vscode-chat"
   - model_name: claude-sonnet-4
     litellm_params:
-      model: github_copilot/claude-sonnet-4
-      extra_headers: {"Editor-Version": "vscode/1.85.1", "Copilot-Integration-Id": "vscode-chat"}
+      model: github_copilot/claude-sonnet-4.5 # 映射到你列表里最新的 Sonnet
+      extra_headers: *copilot_headers
+
+  # --- 2. Claude Opus (解决你之前的 400 报错) ---
+  # Claude Code 内部可能会尝试这两个不同的 ID，我们全部映射到你列表里的唯一真身
+  - model_name: claude-3-opus-20240229
+    litellm_params:
+      model: github_copilot/claude-opus-4.5
+      extra_headers: *copilot_headers
+  - model_name: claude-opus-4-5-20251101 # 对应报错信息中的 ID
+    litellm_params:
+      model: github_copilot/claude-opus-4.5
+      extra_headers: *copilot_headers
+  - model_name: claude-haiku-4-5-20251001
+    litellm_params:
+      model: github_copilot/claude-haiku-4.5
+      extra_headers: *copilot_headers
+
+  # --- 3. GPT-5 系列 (基于你 curl 出来的最新 ID) ---
+  - model_name: gpt-5.2
+    litellm_params:
+      model: github_copilot/gpt-5.2
+      extra_headers: *copilot_headers
+  - model_name: gpt-5-mini
+    litellm_params:
+      model: github_copilot/gpt-5-mini
+      extra_headers: *copilot_headers
+
+  # --- 4. Gemini 系列 ---
+  - model_name: gemini-3-pro
+    litellm_params:
+      model: github_copilot/gemini-2.5-pro # 匹配你列表中的最新版本
+      extra_headers: *copilot_headers
