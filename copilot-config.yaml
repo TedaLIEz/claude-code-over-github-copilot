@@ -6,46 +6,188 @@ model_list:
   # --- 1. Claude 3.5 Sonnet (Claude Code 默认首选) ---
   - model_name: claude-3-5-sonnet-20241022
     litellm_params:
-      model: github_copilot/claude-sonnet-4.5 # 映射到你列表里最新的 Sonnet
+      model: github_copilot/claude-sonnet-4.6 # 映射到你列表里最新的 Sonnet
       extra_headers: &copilot_headers
         Editor-Version: "vscode/1.85.1"
         Copilot-Integration-Id: "vscode-chat"
+        Copilot-Vision-Request: "true"
   - model_name: claude-sonnet-4
     litellm_params:
       model: github_copilot/claude-sonnet-4.5 # 映射到你列表里最新的 Sonnet
       extra_headers: *copilot_headers
 
-  # --- 2. Claude Opus (解决你之前的 400 报错) ---
-  # Claude Code 内部可能会尝试这两个不同的 ID，我们全部映射到你列表里的唯一真身
-  - model_name: claude-3-opus-20240229
+  - model_name: claude-opus-4
+    litellm_params:
+      model: github_copilot/claude-opus-4.6 # 映射到你列表里最新的 Opus
+      extra_headers: *copilot_headers
+
+    # Claude Opus 4.6 (Anthropic) - Max tokens: 64000, Context: 200000
+  - model_name: claude-opus-4-6  # 点号被转为横线时的别名
+    litellm_params:
+      model: github_copilot/claude-opus-4.6
+      extra_headers: *copilot_headers
+
+    # Claude Sonnet 4.6 (Anthropic) - Max tokens: 32000, Context: 200000
+  - model_name: claude-sonnet-4-6  # 点号被转为横线时的别名
+    litellm_params:
+      model: github_copilot/claude-sonnet-4.6
+      extra_headers: *copilot_headers
+
+    # Claude Sonnet 4.5 (Anthropic) - Max tokens: 32000, Context: 144000
+  - model_name: claude-sonnet-4-5  # 点号被转为横线时的别名
+    litellm_params:
+      model: github_copilot/claude-sonnet-4.5
+      extra_headers: *copilot_headers
+
+    # Claude Opus 4.5 (Anthropic) - Max tokens: 32000, Context: 160000
+  - model_name: claude-opus-4-5  # 点号被转为横线时的别名
     litellm_params:
       model: github_copilot/claude-opus-4.5
       extra_headers: *copilot_headers
-  - model_name: claude-opus-4-5-20251101 # 对应报错信息中的 ID
-    litellm_params:
-      model: github_copilot/claude-opus-4.5
-      extra_headers: *copilot_headers
-  - model_name: claude-haiku-4-5-20251001
+
+    # Claude Haiku 4.5 (Anthropic) - Max tokens: 32000, Context: 144000
+  - model_name: claude-haiku-4-5  # 点号被转为横线时的别名
     litellm_params:
       model: github_copilot/claude-haiku-4.5
       extra_headers: *copilot_headers
 
-  # --- 3. GPT-5 系列 (基于你 curl 出来的最新 ID) ---
-  - model_name: gpt-5.2
+  # --- 7. Gemini 系列 (直通) ---
+  - model_name: gemini-3-1-pro-preview
     litellm_params:
-      model: github_copilot/gpt-5.2
+      model: github_copilot/gemini-3.1-pro-preview
       extra_headers: *copilot_headers
-  - model_name: gpt-5-mini
-    litellm_params:
-      model: github_copilot/gpt-5-mini
-      extra_headers: *copilot_headers
+    # Gemini 3.1 Pro (Google) - Max tokens: 64000, Context: 128000
 
-  # --- 4. Gemini 系列 ---
-  - model_name: gemini-3-pro
+  - model_name: gemini-3-pro-preview
     litellm_params:
-      model: github_copilot/gemini-2.5-pro # 匹配你列表中的最新版本
+      model: github_copilot/gemini-3-pro-preview
       extra_headers: *copilot_headers
+    # Gemini 3 Pro Preview (Google) - Max tokens: 64000, Context: 128000
+
+  - model_name: gemini-3-flash-preview
+    litellm_params:
+      model: github_copilot/gemini-3-flash-preview
+      extra_headers: *copilot_headers
+    # Gemini 3 Flash Preview (Google) - Max tokens: 64000, Context: 128000
+
+  - model_name: gemini-2-5-pro
+    litellm_params:
+      model: github_copilot/gemini-2.5-pro
+      extra_headers: *copilot_headers
+    # Gemini 2.5 Pro (Google) - Max tokens: 64000, Context: 128000
+
+  # --- 8. GPT-5 系列 (直通) ---
+  - model_name: gpt-5-2-codex
+    litellm_params:
+      model: github_copilot/gpt-5.2-codex
+      extra_headers: *copilot_headers
+    # GPT-5.2-Codex (OpenAI) - Max tokens: 128000, Context: 400000
+
+  - model_name: gpt-5-3-codex
+    litellm_params:
+      model: github_copilot/gpt-5.3-codex
+      extra_headers: *copilot_headers
+    # GPT-5.3-Codex (OpenAI) - Max tokens: 128000, Context: 400000
+
+  - model_name: gpt-5-1
+    litellm_params:
+      model: github_copilot/gpt-5.1
+      extra_headers: *copilot_headers
+    # GPT-5.1 (OpenAI) - Max tokens: 64000, Context: 264000
+
+  - model_name: gpt-5-1-codex
+    litellm_params:
+      model: github_copilot/gpt-5.1-codex
+      extra_headers: *copilot_headers
+    # GPT-5.1-Codex (OpenAI) - Max tokens: 128000, Context: 400000
+
+  - model_name: gpt-5-1-codex-mini
+    litellm_params:
+      model: github_copilot/gpt-5.1-codex-mini
+      extra_headers: *copilot_headers
+    # GPT-5.1-Codex-Mini (OpenAI) - Max tokens: 128000, Context: 400000
+
+  - model_name: gpt-5-1-codex-max
+    litellm_params:
+      model: github_copilot/gpt-5.1-codex-max
+      extra_headers: *copilot_headers
+    # GPT-5.1-Codex-Max (OpenAI) - Max tokens: 128000, Context: 400000
+
+  # --- 9. GPT-4 系列 (直通) ---
+  - model_name: gpt-4o
+    litellm_params:
+      model: github_copilot/gpt-4o
+      extra_headers: *copilot_headers
+    # GPT-4o (Azure OpenAI) - Max tokens: 4096, Context: 128000
+
+  - model_name: gpt-4o-mini
+    litellm_params:
+      model: github_copilot/gpt-4o-mini
+      extra_headers: *copilot_headers
+    # GPT-4o mini (Azure OpenAI) - Max tokens: 4096, Context: 128000
+
+  - model_name: gpt-4o-mini-2024-07-18
+    litellm_params:
+      model: github_copilot/gpt-4o-mini-2024-07-18
+      extra_headers: *copilot_headers
+    # GPT-4o mini (Azure OpenAI) - Max tokens: 4096, Context: 128000
+
+  - model_name: gpt-4o-2024-11-20
+    litellm_params:
+      model: github_copilot/gpt-4o-2024-11-20
+      extra_headers: *copilot_headers
+    # GPT-4o (Azure OpenAI) - Max tokens: 16384, Context: 128000
+
+  - model_name: gpt-4o-2024-08-06
+    litellm_params:
+      model: github_copilot/gpt-4o-2024-08-06
+      extra_headers: *copilot_headers
+    # GPT-4o (Azure OpenAI) - Max tokens: 16384, Context: 128000
+
+  - model_name: gpt-4o-2024-05-13
+    litellm_params:
+      model: github_copilot/gpt-4o-2024-05-13
+      extra_headers: *copilot_headers
+    # GPT-4o (Azure OpenAI) - Max tokens: 4096, Context: 128000
+
+  - model_name: gpt-4-o-preview
+    litellm_params:
+      model: github_copilot/gpt-4-o-preview
+      extra_headers: *copilot_headers
+    # GPT-4o Preview (Azure OpenAI) - Max tokens: 4096, Context: 128000
+
   - model_name: gpt-4
     litellm_params:
       model: github_copilot/gpt-4
       extra_headers: *copilot_headers
+    # GPT-4 (Azure OpenAI) - Max tokens: 4096, Context: 128000
+  - model_name: gpt-4-1
+    litellm_params:
+      model: github_copilot/gpt-4.1
+      extra_headers: *copilot_headers
+    # GPT-4.1 (Azure OpenAI) - Max tokens: 16384, Context: 128000
+
+  - model_name: gpt-4-1-2025-04-14
+    litellm_params:
+      model: github_copilot/gpt-4.1-2025-04-14
+      extra_headers: *copilot_headers
+    # GPT-4.1 (Azure OpenAI) - Max tokens: 16384, Context: 128000
+
+  - model_name: gpt-4-0613
+    litellm_params:
+      model: github_copilot/gpt-4-0613
+      extra_headers: *copilot_headers
+    # GPT 4 (Azure OpenAI) - Max tokens: 4096, Context: 32768
+
+  # --- 10. GPT-3.5 系列 ---
+  - model_name: gpt-3-5-turbo
+    litellm_params:
+      model: github_copilot/gpt-3.5-turbo
+      extra_headers: *copilot_headers
+    # GPT 3.5 Turbo (Azure OpenAI) - Max tokens: 4096, Context: 16384
+
+  - model_name: gpt-3-5-turbo-0613
+    litellm_params:
+      model: github_copilot/gpt-3.5-turbo-0613
+      extra_headers: *copilot_headers
+    # GPT 3.5 Turbo (Azure OpenAI) - Max tokens: 4096, Context: 16384
