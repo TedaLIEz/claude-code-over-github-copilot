@@ -1,6 +1,6 @@
 litellm_settings:
   drop_params: true  # 核心：自动丢弃 GitHub 不支持的 thinking 等参数
-  set_verbose: false # 设置为 true 可以看到更详细的映射日志
+  set_verbose: true # 设置为 true 可以看到更详细的映射日志
 
 model_list:
   # --- 1. Claude 3.5 Sonnet (Claude Code 默认首选) ---
@@ -10,10 +10,9 @@ model_list:
       extra_headers: &copilot_headers
         Editor-Version: "vscode/1.85.1"
         Copilot-Integration-Id: "vscode-chat"
-        Copilot-Vision-Request: "true"
   - model_name: claude-sonnet-4
     litellm_params:
-      model: github_copilot/claude-sonnet-4.5 # 映射到你列表里最新的 Sonnet
+      model: github_copilot/claude-sonnet-4 # 映射到你列表里最新的 Sonnet
       extra_headers: *copilot_headers
 
   - model_name: claude-opus-4
