@@ -4,39 +4,77 @@ litellm_settings:
 
 model_list:
   # --- 1. Claude 3.5 Sonnet (Claude Code 默认首选) ---
-  - model_name: claude-3-5-sonnet-20241022
+  - model_name: claude-opus-4.7-1m-internal
     litellm_params:
-      model: github_copilot/claude-sonnet-4.6 # 映射到你列表里最新的 Sonnet
+      model: github_copilot/claude-opus-4.7-1m-internal # 映射到你列表里最新的 Sonnet
       extra_headers: &copilot_headers
         Editor-Version: "vscode/1.85.1"
         Copilot-Integration-Id: "vscode-chat"
-  - model_name: claude-sonnet-4
+  - model_name: claude-opus-4.7-high
     litellm_params:
-      model: github_copilot/claude-sonnet-4 # 映射到你列表里最新的 Sonnet
-      extra_headers: *copilot_headers
-
-  - model_name: claude-opus-4
+      model: github_copilot/claude-opus-4.7-high
+        
+  - model_name: claude-opus-4.7-xhigh
     litellm_params:
-      model: github_copilot/claude-opus-4.6 # 映射到你列表里最新的 Opus
+      model: github_copilot/claude-opus-4.7-xhigh
       extra_headers: *copilot_headers
+    # Claude Opus 4.7 (Extra high reasoning)(Internal only) (Anthropic) - enabled
+    # Max tokens: 32000, Context: 200000
 
-    # Claude Opus 4.6 (Anthropic) - Max tokens: 64000, Context: 200000
-  - model_name: claude-opus-4-6  # 点号被转为横线时的别名
+  - model_name: claude-opus-4.7
     litellm_params:
-      model: github_copilot/claude-opus-4.6
+      model: github_copilot/claude-opus-4.7
       extra_headers: *copilot_headers
-
-    # Claude Sonnet 4.6 (Anthropic) - Max tokens: 32000, Context: 200000
-  - model_name: claude-sonnet-4-6  # 点号被转为横线时的别名
-    litellm_params:
-      model: github_copilot/claude-sonnet-4.6
-      extra_headers: *copilot_headers
-
-    # Claude Sonnet 4.5 (Anthropic) - Max tokens: 32000, Context: 144000
-  - model_name: claude-sonnet-4-5  # 点号被转为横线时的别名
+  - model_name: claude-sonnet-4.5
     litellm_params:
       model: github_copilot/claude-sonnet-4.5
       extra_headers: *copilot_headers
+  - model_name: claude-opus-4.5
+    litellm_params:
+      model: github_copilot/claude-opus-4.5
+      extra_headers: *copilot_headers
+    # Claude Opus 4.5 (Anthropic) - enabled
+    # Max tokens: 32000, Context: 200000
+
+  - model_name: claude-haiku-4.5
+    litellm_params:
+      model: github_copilot/claude-haiku-4.5
+      extra_headers: *copilot_headers
+    # Claude Haiku 4.5 (Anthropic) - enabled
+    # Max tokens: 64000, Context: 200000
+    # Claude Sonnet 4.5 (Anthropic) - enabled
+    # Max tokens: 32000, Context: 200000
+    # Claude Opus 4.7 (Anthropic) - enabled
+    # Max tokens: 32000, Context: 200000
+    # Claude Opus 4.7 (High reasoning)(Internal only) (Anthropic) - enabled
+    # Max tokens: 32000, Context: 200000
+  # - model_name: claude-sonnet-4
+  #   litellm_params:
+  #     model: github_copilot/claude-sonnet-4 # 映射到你列表里最新的 Sonnet
+  #     extra_headers: *copilot_headers
+
+  # - model_name: claude-opus-4
+  #   litellm_params:
+  #     model: github_copilot/claude-opus-4.6 # 映射到你列表里最新的 Opus
+  #     extra_headers: *copilot_headers
+
+  #   # Claude Opus 4.6 (Anthropic) - Max tokens: 64000, Context: 200000
+  # - model_name: claude-opus-4-6  # 点号被转为横线时的别名
+  #   litellm_params:
+  #     model: github_copilot/claude-opus-4.6
+  #     extra_headers: *copilot_headers
+
+  #   # Claude Sonnet 4.6 (Anthropic) - Max tokens: 32000, Context: 200000
+  # - model_name: claude-sonnet-4-6  # 点号被转为横线时的别名
+  #   litellm_params:
+  #     model: github_copilot/claude-sonnet-4.6
+  #     extra_headers: *copilot_headers
+
+  #   # Claude Sonnet 4.5 (Anthropic) - Max tokens: 32000, Context: 144000
+  # - model_name: claude-sonnet-4-5  # 点号被转为横线时的别名
+  #   litellm_params:
+  #     model: github_copilot/claude-sonnet-4.5
+  #     extra_headers: *copilot_headers
 
     # Claude Opus 4.5 (Anthropic) - Max tokens: 32000, Context: 160000
   - model_name: claude-opus-4-5  # 点号被转为横线时的别名
