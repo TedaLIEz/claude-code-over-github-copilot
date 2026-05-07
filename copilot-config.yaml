@@ -3,6 +3,8 @@ litellm_settings:
   set_verbose: true # 设置为 true 可以看到更详细的映射日志
 
 model_list:
+
+
   # --- 1. Claude 3.5 Sonnet (Claude Code 默认首选) ---
   - model_name: claude-opus-4.7-1m-internal
     litellm_params:
@@ -23,6 +25,7 @@ model_list:
 
   - model_name: claude-opus-4.7
     litellm_params:
+      model: github_copilot/claude-opus-4.7
       model: github_copilot/claude-opus-4.7
       extra_headers: *copilot_headers
   - model_name: claude-sonnet-4.5
@@ -86,6 +89,13 @@ model_list:
   - model_name: claude-haiku-4-5  # 点号被转为横线时的别名
     litellm_params:
       model: github_copilot/claude-haiku-4.5
+      extra_headers: *copilot_headers
+
+    # Claude Opus 4.6-1m (Anthropic) - Max tokens: 64000, Context: 200000
+  
+  - model_name: claude-opus-4-6-1m  # 点号被转为横线时的别名
+    litellm_params:
+      model: github_copilot/claude-opus-4.6-1m
       extra_headers: *copilot_headers
 
   # --- 7. Gemini 系列 (直通) ---
