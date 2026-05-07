@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Route Claude Code through GitHub Copilot models via a local LiteLLM proxy"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "litellm[proxy]==1.83.3",
+    "litellm[proxy]==1.83.14",
     "psutil==7.2.2",
     "requests==2.32.5",
     "dnspython==2.8.0",
